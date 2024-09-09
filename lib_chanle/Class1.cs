@@ -11,11 +11,11 @@ namespace lib_chanle
         {
             if (number % 2 == 0)
             {
-                return $"{number} la so chan";
+                return $"{number} là số chẵn!";
             }
             else
             {
-                return $"{number} la so le.";
+                return $"{number} là số lẻ!";
             }
         }
     }

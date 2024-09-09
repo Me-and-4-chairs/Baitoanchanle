@@ -10,7 +10,8 @@
         /* Đặt font và căn giữa form */
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f4f4f9;
+            background: url('https://img6.thuthuatphanmem.vn/uploads/2022/04/15/anh-nen-tuong-yasuo-4k_040627692.jpg') no-repeat center center fixed;
+            background-size: cover;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -38,7 +39,7 @@
 
         /* Style cho input */
         .form-input {
-            width: 100%;
+            width: 90%;
             padding: 12px 15px;
             margin-bottom: 20px;
             border: 1px solid #ddd;
@@ -88,7 +89,7 @@
             <button type="submit" class="form-btn">Kiểm tra</button>
         </form>
 
-        @if (ViewBag.Result != null) 
+        @if (ViewBag.Result != null)
         {
             <div class="result">
                 @ViewBag.Result

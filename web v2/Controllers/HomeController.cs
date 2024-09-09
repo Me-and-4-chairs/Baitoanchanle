@@ -1,16 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using web_v2.Models;
+using lib_chanle; // Thay thế bằng không gian tên của DLL bạn đang sử dụng
 
 namespace web_v2.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly kiemtra _checker; // Lớp từ DLL
 
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
+            _checker = new kiemtra(); // Khởi tạo đối tượng từ DLL
         }
 
         public IActionResult Index()
@@ -21,30 +24,33 @@ namespace web_v2.Controllers
         [HttpPost]
         public IActionResult KiemTra(string so)
         {
-            var result = ProcessKiemTra(so);
-            ViewBag.Result = result; // Sử dụng ViewBag để truyền kết quả đến View
-            return View("Index"); // Trả về View Index với kết quả kiểm tra
+            try
+            {
+                var result = ProcessKiemTra(so);
+                ViewBag.Result = result;
+            }
+            catch (Exception ex)
+            {
+                // Log lỗi nếu cần
+                _logger.LogError(ex, "Lỗi khi kiểm tra số.");
+                ViewBag.Result = "Đã xảy ra lỗi. Vui lòng thử lại.";
+            }
+            return View("Index");
         }
 
         private string ProcessKiemTra(string so)
         {
             if (int.TryParse(so, out int number))
             {
-                if (number % 2 == 0)
-                {
-                    return $"{number} là số chẵn!";
-                }
-                else
-                {
-                    return $"{number} là số lẻ!";
-                }
+                // Sử dụng phương thức từ lớp kiemtra
+                var result = _checker.Main(number);
+                return result;
             }
             else
             {
                 return "Vui lòng nhập một số hợp lệ.";
             }
         }
-
 
         public IActionResult Privacy()
         {
