@@ -20,7 +20,7 @@ namespace BaiToanChanLe
                 Console.WriteLine($"{number} la so le.");
             }
             Console.ReadKey();
-            //yutytutyu
+            //
         }
     }
 }
