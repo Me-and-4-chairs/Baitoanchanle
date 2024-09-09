@@ -1,0 +1,100 @@
+﻿@model string
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xác định số chẵn số lẻ</title>
+    <style>
+        /* Đặt font và căn giữa form */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* Khung chứa form */
+        .form-container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        /* Tiêu đề của form */
+        h2 {
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+            color: #333;
+        }
+
+        /* Style cho input */
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+            /* Hiệu ứng khi focus vào input */
+            .form-input:focus {
+                border-color: #007bff;
+                outline: none;
+            }
+
+        /* Style cho nút submit */
+        .form-btn {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            /* Hiệu ứng hover cho nút */
+            .form-btn:hover {
+                background-color: #0056b3;
+            }
+
+        /* Style cho kết quả */
+        .result {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>Xác định số chẵn số lẻ</h2>
+        <form action="/Home/KiemTra" method="post">
+            <input type="text" name="so" placeholder="Nhập số vào từ bàn phím" class="form-input" required>
+            <button type="submit" class="form-btn">Kiểm tra</button>
+        </form>
+
+        @if (ViewBag.Result != null) 
+        {
+            <div class="result">
+                @ViewBag.Result
+            </div>
+        }
+    </div>
+
+</body>
+</html>
